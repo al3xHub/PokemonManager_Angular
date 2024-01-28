@@ -2,8 +2,16 @@ import { Component } from "@angular/core";
 
 @Component({
     selector:'app-generaciones',
-    template:'<div><h2>Primera Generación:</h2></div>'
+    templateUrl:'./generaciones.component.html'
 })
 export class GeneracionesComponent{
+
+    generaciones = ['Generación I',
+                    'Generación II',
+                    'Generación III',
+                    'Generación IV',
+                    'Generación V',
+                    'Generación VI',
+                    'Generación VII',]
 
 }
