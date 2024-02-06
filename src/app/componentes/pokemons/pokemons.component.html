@@ -1,0 +1,23 @@
+<div class="container">
+    <h2>Los pokemons que tenemos en el array: </h2>
+    <hr/>
+    <div class="columns">
+        <div class="column">
+            <p>En el orden del array: </p>
+        </div>
+    </div>
+    <div class="columns is-multiline">
+        <ul class="menu-list column is-one-third" *ngFor="let personaje of personajes">
+            <li>
+                <ul class="menu-list">
+                    <li><img src="{{personaje.imagen}}"/></li>
+                    <li>Nombre: {{personaje.nombre}}</li>
+                    <li>Categoría : {{personaje.categoria}}</li>
+                    <li>Talla : <span *ngIf="personaje.talla; else na">{{personaje.talla | number:'1.2-2'}} metros</span></li>
+                    <li>Peso : <span *ngIf="personaje.peso; else na">{{personaje.peso | number:'1.2-2'}} kg</span></li>
+                    <ng-template #na>N/A</ng-template>
+                </ul>
+            </li>
+        </ul>
+    </div>
+</div>
