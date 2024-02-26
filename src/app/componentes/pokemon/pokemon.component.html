@@ -1,0 +1,10 @@
+<li>
+    <ul class="menu-list">
+        <img src="{{personaje.imagen}}" (click)="clickEnImagen()"/>
+        <li>Nombre: {{personaje.nombre}}</li>
+        <li>Categoría : {{personaje.categoria}}</li>
+        <li>Talla : <span *ngIf="personaje.talla; else na">{{personaje.talla | number:'1.2-2'}} metros</span></li>
+        <li>Peso : <span *ngIf="personaje.peso; else na">{{personaje.peso | number:'1.2-2'}} kg</span></li>
+        <ng-template #na>N/A</ng-template>
+    </ul>
+</li>

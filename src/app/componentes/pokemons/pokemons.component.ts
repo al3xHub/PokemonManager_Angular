@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { PokemonsService } from '../../services/pokemons.service';
+import { FormBuscarPersonaje } from '../../models/form-buscar-personaje';
 
 @Component({
   selector: 'app-pokemons',
@@ -6,14 +8,32 @@ import { Component, OnInit } from '@angular/core';
   styleUrl: './pokemons.component.css'
 })
 export class PokemonsComponent implements OnInit{
-  personajes = [{ 'id': 1, 'nombre': 'Bulbasaur', 'categoria': 'planta y venenosa', 'talla': '', 'peso':'','imagen': "./assets/1.png"},
-                { 'id': 2, 'nombre': 'Ivysaur', 'categoria': 'planta y venenosa', 'talla': 1, 'peso':13,'imagen': "./assets/2.png"},
-                { 'id': 3, 'nombre': 'Venusaur', 'categoria': 'planta y venenosa', 'talla': 2, 'peso':100, 'imagen': "./assets/3.png"},
-                { 'id': 4, 'nombre': 'Charmander', 'categoria': 'fuego', 'talla': 0.6 , 'peso': 8.5, 'imagen': "./assets/4.png"},
-                { 'id': 5, 'nombre': 'Charmaleon', 'categoria': 'fuego', 'talla': 1.1 , 'peso':19 ,'imagen': "./assets/5.png"},
-                { 'id': 6, 'nombre': 'Charizard', 'categoria': 'fuego', 'talla': 1.7 , 'peso': 90.5, 'imagen': "./assets/6.png"}]
+ 
+
+  pokemonSeleccionado = '';
+
+  personajes=[{'id': 0, 'nombre': '', 'categoria': '', 'talla': 0, 'peso': 0, 'imagen': '',}];
+
+  cuenta = 0;
+
+  formBuscarPersonaje = new FormBuscarPersonaje("");
+ 
+
+  constructor(private servicePokemons: PokemonsService){}
+
+  ngOnInit(){
+    this.personajes = this.servicePokemons.getPersonajes();
+    this.cuenta = this.servicePokemons.contarPersonajes();
+  }
+
+
+  buscar(nombreDelPersonaje: string) {
+    this.personajes = this.servicePokemons.buscarPersonaje(nombreDelPersonaje);
+    }
   
-  constructor(){}
-  ngOnInit(){}
+  cancelarBuscar() {
+    this.personajes = this.servicePokemons.getPersonajes();
+    this.formBuscarPersonaje.setNombre('');
+    }
 
 }
